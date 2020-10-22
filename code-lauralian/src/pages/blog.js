@@ -1,9 +1,10 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
-import PageInfo from '../components/PageInfo/PageInfo';
-import ArticlePreview from '../components/ArticlePreview/ArticlePreview';
+import PageInfo from 'components/PageInfo/PageInfo';
+import ArticlePreview from 'components/ArticlePreview/ArticlePreview';
 import slugify from 'slugify';
+import PropTypes from 'prop-types';
 
 const ArticesWrapper = styled.div`
   display: grid;
@@ -16,7 +17,7 @@ const pageData = {
   paragraph: 'Artykuły o frontendzie',
 }
 
-const ArticlesPage = ({ data }) => {
+const BlogPage = ({ data }) => {
   const { 
     allDatoCmsArticle: { nodes },
   } = data;
@@ -38,6 +39,20 @@ const ArticlesPage = ({ data }) => {
   )
 };
 
+BlogPage.propTypes = {
+  data: PropTypes.shape({
+    allDatoCmsArticle: {
+      nodes: {
+        title: PropTypes.string.isRequired,
+        featuredImage: {
+          fluid: PropTypes.string.isRequired
+        }
+      }
+    }
+  }).isRequired,
+};
+
+
 export const query = graphql`
   {
     allDatoCmsArticle {
@@ -53,4 +68,4 @@ export const query = graphql`
   }
 `;
 
-export default ArticlesPage;
+export default BlogPage;

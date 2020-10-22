@@ -1,9 +1,10 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
-import PageInfo from '../components/PageInfo/PageInfo';
-import ArticlePreview from '../components/ArticlePreview/ArticlePreview';
+import PageInfo from 'components/PageInfo/PageInfo';
+import ArticlePreview from 'components/ArticlePreview/ArticlePreview';
 import slugify from 'slugify';
+import PropTypes from 'prop-types';
 
 const ArticesWrapper = styled.div`
   display: grid;
@@ -16,7 +17,7 @@ const pageData = {
   paragraph: 'Przedstawiam Wam kilka najciekawszych projektów',
 }
 
-const ArticlesPage = ({ data }) => {
+const PortfolioPage = ({ data }) => {
   const { 
     allDatoCmsPortfolio: { nodes },
   } = data;
@@ -38,6 +39,19 @@ const ArticlesPage = ({ data }) => {
   )
 };
 
+PortfolioPage.propTypes = {
+  data: PropTypes.shape({
+    allDatoCmsPortfolio: {
+      nodes: {
+        title: PropTypes.string.isRequired,
+        featuredImage: {
+          fluid: PropTypes.string.isRequired,
+        }
+      }
+    }
+  }).isRequired,
+};
+
 export const query = graphql`
   {
     allDatoCmsPortfolio {
@@ -53,4 +67,4 @@ export const query = graphql`
   }
 `;
 
-export default ArticlesPage;
+export default PortfolioPage;

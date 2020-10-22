@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Image from 'gatsby-image';
 import { Link } from 'gatsby';
+import PropTypes from 'prop-types';
 
 const PreviewWrapper = styled(Link)`
     display: block;
@@ -43,5 +44,11 @@ const Preview = ({ title, image, slug }) => (
         </PreviewInfoLabel>
     </PreviewWrapper>
 );
+
+Preview.propTypes = {
+    title: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    slug: PropTypes.string.isRequired,
+};
 
 export default Preview;

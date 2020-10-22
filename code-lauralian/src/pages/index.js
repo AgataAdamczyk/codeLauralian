@@ -2,7 +2,8 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import Image from 'gatsby-image';
-import Button from '../components/Button/Button';
+import Button from 'components/Button/Button';
+import PropTypes from 'prop-types';
 
 const ContentWrapper = styled.div`
   width: 65%;
@@ -44,6 +45,16 @@ const IndexPage = ({ data }) => (
     <StyledImage fluid={data.file.childImageSharp.fluid} />
   </>
 );
+
+IndexPage.propTypes = {
+  data: PropTypes.shape({
+    file: {
+      childImageSharp: {
+        fluid: PropTypes.string.isRequired,
+      }
+    }
+  }).isRequired,
+};
 
 export const query = graphql`
   {

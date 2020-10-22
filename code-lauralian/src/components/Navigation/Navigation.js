@@ -13,7 +13,7 @@ const NavigationWrapper = styled.nav`
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    font-family: 'Montserrat';
+    /* font-family: 'Montserrat'; */
 
     a {
         text-decoration: none;
@@ -52,7 +52,7 @@ const Navigation = () => {
 
     const data = useStaticQuery(graphql`
         {
-            file(name: {eq: "IMG_3038"}) {
+            file(name: {eq: "favicon"}) {
                 childImageSharp {
                   fluid {
                     src

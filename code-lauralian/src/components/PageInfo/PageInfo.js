@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Wrapper = styled.div`
     margin: 50px 0;
@@ -22,5 +23,10 @@ const PageInfo = ({ title, paragraph }) => (
         <p>{paragraph}</p>
     </Wrapper>
 );
+
+PageInfo.propTypes = {
+    title: PropTypes.string.isRequired,
+    paragraph: PropTypes.string.isRequired,
+};
 
 export default PageInfo;

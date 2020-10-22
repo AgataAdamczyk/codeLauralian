@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
+import PropTypes from 'prop-types';
 
 const StyledImage = styled(Img)`
   position: absolute; 
@@ -19,6 +20,18 @@ const AboutPage = ({ data }) => (
     <StyledImage fluid={data.datoCmsAbout.aboutPhoto.fluid}/>
   </>
 );
+
+AboutPage.propTypes = {
+  data: PropTypes.shape({
+    datoCmsAbout: {
+      title: PropTypes.string.isRequired,
+      aboutContent: PropTypes.string.isRequired,
+      aboutPhoto: {
+        fluid: PropTypes.string.isRequired,
+      }
+    }
+  }).isRequired,
+};
 
 export const query = graphql`
   {

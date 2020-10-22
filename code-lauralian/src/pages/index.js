@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 const ContentWrapper = styled.div`
   width: 65%;
-  height: calc(100vh - 80px);
+  height: calc(100vh - 120px);
   text-align: right;
   flex-direction: column;
   justify-content: center;
@@ -28,11 +28,11 @@ const ContentWrapper = styled.div`
 
 const StyledImage = styled(Image)`
   position: absolute; 
-  top: 0;
+  top: 30;
   right: 0;
-  width: 35%;
-  height: 100vh;
-  object-fit: cover;
+  /* width: 35%; */
+  height: 90vh;
+  /* object-fit: cover; */
 `;
 
 const IndexPage = ({ data }) => (
@@ -41,8 +41,8 @@ const IndexPage = ({ data }) => (
       <h1>Cześć, mam na imię Agata!</h1>
       <p>Jestem Junior Front-end Developerem</p>
       <Button>Moje portfolio</Button>
+      <StyledImage fixed={data.file.childImageSharp.fixed} />
     </ContentWrapper>
-    <StyledImage fluid={data.file.childImageSharp.fluid} />
   </>
 );
 
@@ -50,7 +50,7 @@ IndexPage.propTypes = {
   data: PropTypes.shape({
     file: {
       childImageSharp: {
-        fluid: PropTypes.string.isRequired,
+        fixed: PropTypes.string.isRequired,
       }
     }
   }).isRequired,
@@ -60,8 +60,8 @@ export const query = graphql`
   {
     file(name: {eq: "IMG_0588"}) {
       childImageSharp {
-        fluid(maxWidth: 800, maxHeight: 1000, quality: 90) {
-          ...GatsbyImageSharpFluid
+        fixed(height: 300) {
+          ...GatsbyImageSharpFixed_tracedSVG
         }
       }
     }

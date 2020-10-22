@@ -8,16 +8,16 @@ const StyledImage = styled(Img)`
   position: absolute; 
   top: 0;
   right: 0;
-  width: 35%;
-  height: 100vh;
-  object-fit: cover;
+  /* width: 35%; */
+  /* height: 100vh; */
+  /* object-fit: cover; */
 `;
 
 const AboutPage = ({ data }) => (
   <>
     <h1>{data.datoCmsAbout.title}</h1>
     <p>{data.datoCmsAbout.aboutContent}</p>
-    <StyledImage fluid={data.datoCmsAbout.aboutPhoto.fluid}/>
+    <StyledImage fixed={data.datoCmsAbout.aboutPhoto.fixed}/>
   </>
 );
 
@@ -27,7 +27,7 @@ AboutPage.propTypes = {
       title: PropTypes.string.isRequired,
       aboutContent: PropTypes.string.isRequired,
       aboutPhoto: {
-        fluid: PropTypes.string.isRequired,
+        fixed: PropTypes.string.isRequired,
       }
     }
   }).isRequired,
@@ -39,8 +39,8 @@ export const query = graphql`
       title
       aboutContent
       aboutPhoto {
-        fluid(maxHeight: 1000) {
-          ...GatsbyDatoCmsFluid_tracedSVG
+        fixed(height: 500) {
+          ...GatsbyDatoCmsFixed_noBase64
         }
       }
     }

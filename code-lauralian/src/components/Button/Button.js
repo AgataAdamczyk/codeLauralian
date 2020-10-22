@@ -1,12 +1,14 @@
 import styled from 'styled-components';
+import { colors, typography } from 'utils';
 
 const Button = styled.button`
-    background-color: black;
+    background-color: ${colors.lemon};
     border: none;
-    padding: 10px 25px;
-    color: white;
+    border-radius: 5px;
+    padding: 12px 25px;
+    color: ${colors.summerSky};
     font-size: 13px;
-    font-weight: 600;
+    font-weight: ${typography.fontWeightLight};
     flex-shrink: 0;
 `;
 

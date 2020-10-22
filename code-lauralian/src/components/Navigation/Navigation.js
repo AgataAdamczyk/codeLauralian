@@ -1,18 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
 import { graphql, Link, useStaticQuery } from 'gatsby';
+import { colors, typography } from 'utils';
 import Image from 'gatsby-image';
 
 const NavigationWrapper = styled.nav`
-    width: 100%;
-    padding: 30px;
+    height: 10vh;
+    width: 100vw;
+    padding: 60px 30px;
     position: absolute;
     top: 0px;
     left: 0px;
-    margin-bottom: 20px;
+    border-bottom: 1px solid ${colors.appleGreen};
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    color: ${colors.summerSky};
     /* font-family: 'Montserrat'; */
 
     a {
@@ -22,19 +25,11 @@ const NavigationWrapper = styled.nav`
 `;
 
 const Logo = styled(Link)`
-    width: 25%;
-    position: relative;
-    font-weight: 700;
-    font-size: 20px;
-    /* margin-right: 10px; */
+    width: 12vw;
 `;
 
 const LogoImg = styled(Image)`
-    position: absolute;
-    top: 35px;
-    left: 170px;
-    width: 60px;
-    height: 60px;
+    margin-right: 10px;
 `;
 
 const NavigationList = styled.ul`
@@ -44,18 +39,23 @@ const NavigationList = styled.ul`
 
 const NavigationListItem = styled.li`
     font-size: 15px;
-    font-weight: 600;
-    margin-left: 32px;
+    font-weight: ${typography.fontWeightLight};
+    margin-left: 50px;
+
+    &:hover {
+        color: ${colors.appleGreen};
+        text-decoration: underline;
+    }
 `;
 
 const Navigation = () => {
 
     const data = useStaticQuery(graphql`
         {
-            file(name: {eq: "favicon"}) {
+            file(name: {eq: "logo_code2"}) {
                 childImageSharp {
                   fluid {
-                    src
+                    ...GatsbyImageSharpFluid_noBase64
                   }
                 }
             }
@@ -64,9 +64,8 @@ const Navigation = () => {
 
     return (
         <NavigationWrapper>
-            <Logo to='/'>
+            <Logo to='/' >
                 <LogoImg fluid={data.file.childImageSharp.fluid}/>
-                #CodeLauralian
             </Logo>
             <NavigationList>
                 <NavigationListItem>

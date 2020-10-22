@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -14,7 +16,8 @@ module.exports = {
         fonts: [
           {
             family: `Montserrat`,
-            variants: [`400`, `600`, `700`]
+            variants: [`400`, `600`, `700`],
+            subsets: [`latin-ext`],
           },
         ],
       },
@@ -32,6 +35,12 @@ module.exports = {
         name: `articles`,
         path: `${__dirname}/src/data/articles`,
       },
+    },
+    {
+      resolve: `gatsby-source-datocms`,
+      options: {
+        apiToken: process.env.API_DATO_CMS,
+        },
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,

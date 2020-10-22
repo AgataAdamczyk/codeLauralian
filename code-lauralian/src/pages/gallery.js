@@ -1,27 +1,50 @@
-import React from "react";
-import { graphql } from "gatsby";
+import React from 'react';
+import styled from 'styled-components';
+import { graphql } from 'gatsby';
+import Image from 'gatsby-image';
 
-const GalleryPage = ({ data }) => (
-  <>
-    <h1>My gallery</h1>
-    {/* {NodeList.map(({childImageSharp}) => (
-      <img fluid={childImageSharp.fluid} />
-    ))} */}
-  </>
-);
+const GalleryImages = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 60px;
+`;
+
+const SingleImage = styled(Image)`
+  justify-self: center;
+`;
+
+const GalleryPage = ({ data }) => {
+
+  return (
+    <>
+     <h1>My gallery </h1>
+     <GalleryImages>
+     {data.allFile.edges.map(({ node }, i)  => 
+       <SingleImage
+        key={i}
+        fixed={node.childImageSharp.fixed}
+        alt='photo'
+        /> 
+     )}
+     </GalleryImages>
+   </>
+  );
+};
 
 export const query = graphql`
   {
     allFile(filter: {absolutePath: {regex: "/gallery/"}}) {
-      nodes {
-        childImageSharp {
-          fluid(maxWidth: 700, maxHeight: 500) {
-            ...GatsbyImageSharpFluid_tracedSVG
+      edges {
+        node {
+          childImageSharp {
+            fixed(height: 500) {
+              ...GatsbyImageSharpFixed_tracedSVG
+            }
           }
         }
       }
     }
   }
-`
+`;
 
 export default GalleryPage;

@@ -1,11 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'gatsby';
+import { graphql, Link, useStaticQuery } from 'gatsby';
+import Image from 'gatsby-image';
 
 const NavigationWrapper = styled.nav`
+    width: 100%;
+    padding: 30px;
     position: absolute;
-    top: 20px;
-    left: 30px;
+    top: 0px;
+    left: 0px;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -17,10 +21,20 @@ const NavigationWrapper = styled.nav`
     }
 `;
 
-const Logo = styled.span`
+const Logo = styled(Link)`
+    width: 25%;
+    position: relative;
     font-weight: 700;
     font-size: 20px;
-    margin-right: 10px;
+    /* margin-right: 10px; */
+`;
+
+const LogoImg = styled(Image)`
+    position: absolute;
+    top: 35px;
+    left: 170px;
+    width: 60px;
+    height: 60px;
 `;
 
 const NavigationList = styled.ul`
@@ -34,26 +48,45 @@ const NavigationListItem = styled.li`
     margin-left: 32px;
 `;
 
-const Navigation = () => (
-    <NavigationWrapper>
-        <Logo>
-            <Link to="/">#CodeLauralian</Link>
-        </Logo>
-        <NavigationList>
-            <NavigationListItem>
-                <Link to="/articles">articles</Link>
-            </NavigationListItem>
-            <NavigationListItem>
-                <Link to="/about">about</Link>
-            </NavigationListItem>
-            <NavigationListItem>
-                <Link to="/gallery">gallery</Link>
-            </NavigationListItem>
-            <NavigationListItem>
-                <Link to="/contact">contact</Link>
-            </NavigationListItem>
-        </NavigationList>
-    </NavigationWrapper>
-);
+const Navigation = () => {
+
+    const data = useStaticQuery(graphql`
+        {
+            file(name: {eq: "IMG_3038"}) {
+                childImageSharp {
+                  fluid {
+                    src
+                  }
+                }
+            }
+        }
+    `);
+
+    return (
+        <NavigationWrapper>
+            <Logo to='/'>
+                <LogoImg fluid={data.file.childImageSharp.fluid}/>
+                #CodeLauralian
+            </Logo>
+            <NavigationList>
+                <NavigationListItem>
+                    <Link to="/portfolio">portfolio</Link>
+                </NavigationListItem>
+                <NavigationListItem>
+                    <Link to="/blog">blog</Link>
+                </NavigationListItem>
+                <NavigationListItem>
+                    <Link to="/about">o mnie</Link>
+                </NavigationListItem>
+                {/* <NavigationListItem>
+                    <Link to="/gallery">galeria</Link>
+                </NavigationListItem> */}
+                <NavigationListItem>
+                    <Link to="/contact">kontakt</Link>
+                </NavigationListItem>
+            </NavigationList>
+        </NavigationWrapper>
+    )
+};
 
 export default Navigation;

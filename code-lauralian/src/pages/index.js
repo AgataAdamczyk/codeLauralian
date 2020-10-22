@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql } from "gatsby";
+import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import Image from 'gatsby-image';
 import Button from '../components/Button/Button';
@@ -15,13 +15,13 @@ const ContentWrapper = styled.div`
   h1 {
     font-size: 85px;
     margin: 0;
-    /* width: 40%;
-    line-height: 0.9; */
+    width: 40%;
+    line-height: 0.98;
   }
 
   p {
     margin: 20px 0 40px;
-    /* width: 40%; */
+    width: 40%;
   }
 `;
 
@@ -55,6 +55,6 @@ export const query = graphql`
       }
     }
   }
-`
+`;
 
 export default IndexPage;

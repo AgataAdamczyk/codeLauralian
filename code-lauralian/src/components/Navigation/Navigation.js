@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { graphql, Link, useStaticQuery } from 'gatsby';
-import { colors, typography } from 'utils';
 import Image from 'gatsby-image';
+import Media from 'components/Media/Media';
 
 const NavigationWrapper = styled.nav`
     height: 10vh;
@@ -11,11 +11,11 @@ const NavigationWrapper = styled.nav`
     position: absolute;
     top: 0px;
     left: 0px;
-    border-bottom: 1px solid ${colors.appleGreen};
+    border-bottom: 1px solid ${({theme}) => theme.colors.appleGreen};
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    color: ${colors.summerSky};
+    color: ${({theme}) => theme.colors.black};
     /* font-family: 'Montserrat'; */
 
     a {
@@ -39,11 +39,11 @@ const NavigationList = styled.ul`
 
 const NavigationListItem = styled.li`
     font-size: 15px;
-    font-weight: ${typography.fontWeightLight};
+    font-weight: ${({theme}) => theme.thin};
     margin-left: 50px;
 
-    &:hover {
-        color: ${colors.appleGreen};
+    :hover {
+        color: ${({theme}) => theme.colors.appleGreen};
         text-decoration: underline;
     }
 `;
@@ -52,7 +52,7 @@ const Navigation = () => {
 
     const data = useStaticQuery(graphql`
         {
-            file(name: {eq: "logo_code2"}) {
+            file(name: {eq: "logo_new"}) {
                 childImageSharp {
                   fluid {
                     ...GatsbyImageSharpFluid_noBase64
@@ -84,6 +84,7 @@ const Navigation = () => {
                     <Link to="/contact">kontakt</Link>
                 </NavigationListItem>
             </NavigationList>
+            <Media/>
         </NavigationWrapper>
     )
 };

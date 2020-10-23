@@ -15,10 +15,11 @@ const MediaWrapper = styled.nav`
     flex-direction: row;
 `;
 
-const MenuItem = styled(Link)``;
+const MenuItem = styled(Link)`
+    cursor: pointer;
+`;
 
 const MediaIcon = styled.img`
-    color: black;
     width: 15px;
     height: 15px;
     margin-right: 15px;

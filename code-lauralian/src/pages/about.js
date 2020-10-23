@@ -4,21 +4,33 @@ import styled from 'styled-components';
 import Img from 'gatsby-image';
 import PropTypes from 'prop-types';
 
+const ContextWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 40px;
+`;
+
+const Title = styled.h1`
+  grid-column: 1;
+`;
+
+const Paragraph = styled.p`
+  grid-column: 1;
+`;
+
 const StyledImage = styled(Img)`
-  position: absolute; 
-  top: 0;
-  right: 0;
+  grid-column: 2;
   /* width: 35%; */
   /* height: 100vh; */
   /* object-fit: cover; */
 `;
 
 const AboutPage = ({ data }) => (
-  <>
-    <h1>{data.datoCmsAbout.title}</h1>
-    <p>{data.datoCmsAbout.aboutContent}</p>
-    <StyledImage fixed={data.datoCmsAbout.aboutPhoto.fixed}/>
-  </>
+  <ContextWrapper>
+    <Title>{data.datoCmsAbout.title}</Title>
+    <Paragraph>{data.datoCmsAbout.aboutContent}</Paragraph>
+    <StyledImage fixed={data.datoCmsAbout.photo.fixed}/>
+  </ContextWrapper>
 );
 
 AboutPage.propTypes = {
@@ -38,8 +50,8 @@ export const query = graphql`
     datoCmsAbout {
       title
       aboutContent
-      aboutPhoto {
-        fixed(height: 500) {
+      photo {
+        fixed(height: 600) {
           ...GatsbyDatoCmsFixed_noBase64
         }
       }

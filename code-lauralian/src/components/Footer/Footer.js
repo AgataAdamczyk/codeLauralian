@@ -14,7 +14,7 @@ const FooterContent = styled.div`
 
 const Copyright = styled.p`
     font-size: 0.8rem;
-    color: ${({theme}) => theme.colors.summerSky};
+    color: ${({theme}) => theme.colors.black};
     font-weight: ${({theme}) => theme.thin};
     margin: 15px;
 `;

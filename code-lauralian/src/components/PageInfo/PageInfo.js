@@ -7,12 +7,12 @@ const Wrapper = styled.div`
     max-width: 350px;
 
     h1 {
-        font-size: 52px;
+        font-size: 40px;
         margin: 0;
     }
 
     p {
-        font-size: 18px;
+        font-size: 15px;
         margin: 15px 0 0;
     }
 `;

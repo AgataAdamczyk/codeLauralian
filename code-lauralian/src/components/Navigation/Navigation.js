@@ -16,7 +16,7 @@ const NavigationWrapper = styled.nav`
     align-items: center;
     justify-content: flex-start;
     color: ${({theme}) => theme.colors.black};
-    /* font-family: 'Montserrat'; */
+    box-shadow: 0 10px 20px -15px ${({theme}) => theme.colors.lemon};
 
     a {
         text-decoration: none;

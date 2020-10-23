@@ -18,7 +18,7 @@ const Logo404 = styled(Img)`
 `;
 
 const Info404 = styled.h2`
-  color: ${({theme}) => theme.colors.summerSky};
+  color: ${({theme}) => theme.colors.black};
 
   :hover {
     color: ${({theme}) => theme.colors.appleGreen};

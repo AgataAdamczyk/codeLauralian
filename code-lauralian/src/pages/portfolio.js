@@ -1,70 +1,39 @@
 import React from 'react';
-import { graphql } from 'gatsby';
 import styled from 'styled-components';
-import PageInfo from 'components/PageInfo/PageInfo';
-import ArticlePreview from 'components/ArticlePreview/ArticlePreview';
-import slugify from 'slugify';
-import PropTypes from 'prop-types';
+import { Link } from 'gatsby';
 
-const ArticesWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 60px;
+const PageWrapper = styled.div`
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
 `;
 
-const pageData = {
-  title: 'Portfolio',
-  paragraph: 'Przedstawiam Wam kilka najciekawszych projektów',
-}
-
-const PortfolioPage = ({ data }) => {
-  const { 
-    allDatoCmsPortfolio: { nodes },
-  } = data;
-
-  return (
-    <>
-      <PageInfo title={pageData.title} paragraph={pageData.paragraph} />
-      <ArticesWrapper>
-        {nodes.map(({title, featuredImage }) => (
-          <ArticlePreview 
-            key={title} 
-            title={title} 
-            image={featuredImage.fluid} 
-            slug={slugify(title, { lower: true })}
-          />
-        ))}
-      </ArticesWrapper>
-    </>
-  )
-};
-
-PortfolioPage.propTypes = {
-  data: PropTypes.shape({
-    allDatoCmsPortfolio: {
-      nodes: {
-        title: PropTypes.string.isRequired,
-        featuredImage: {
-          fluid: PropTypes.string.isRequired,
-        }
-      }
-    }
-  }).isRequired,
-};
-
-export const query = graphql`
-  {
-    allDatoCmsPortfolio {
-      nodes {
-        title
-        featuredImage {
-          fluid(maxWidth: 500,) {
-            ...GatsbyDatoCmsFluid_tracedSVG
-          }
-        }
-      }
-    }
-  }
+const Title = styled.h1`
+  width: 50%;
+  text-align: center;
 `;
+
+const Paragraph = styled.p`
+  width: 50%;
+  text-align: center;
+  line-height: 1.8;
+`;
+
+const Decor = styled.span`
+  font-size: 30px;
+  color: ${({theme}) => theme.colors.lemon};
+  margin: 10px;
+`;
+
+const PortfolioPage = () => (
+  <PageWrapper>
+    <Title>Portfolio</Title>
+    <Decor>. . .</Decor>
+    <Paragraph>Chcesz zobaczyć moje projekty ?</Paragraph>
+    <Link to="https://github.com/AgataAdamczyk" target="_blank">github</Link>
+  </PageWrapper>
+);
 
 export default PortfolioPage;

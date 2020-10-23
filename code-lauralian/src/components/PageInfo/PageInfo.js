@@ -3,24 +3,35 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const Wrapper = styled.div`
-    margin: 50px 0;
-    max-width: 350px;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+`;
 
-    h1 {
-        font-size: 40px;
-        margin: 0;
-    }
+const Title = styled.h1`
+  width: 50%;
+  text-align: center;
+`;
 
-    p {
-        font-size: 15px;
-        margin: 15px 0 0;
-    }
+const Paragraph = styled.p`
+  width: 50%;
+  text-align: center;
+  line-height: 1.8;
+`;
+
+const Decor = styled.span`
+  font-size: 30px;
+  color: ${({theme}) => theme.colors.lemon};
+  margin: 10px;
 `;
 
 const PageInfo = ({ title, paragraph }) => (
     <Wrapper>
-        <h1>{title}</h1>
-        <p>{paragraph}</p>
+        <Title>{title}</Title>
+        <Decor>. . .</Decor>
+        <Paragraph>{paragraph}</Paragraph>
     </Wrapper>
 );
 

@@ -8,8 +8,9 @@ import PropTypes from 'prop-types';
 
 const ArticesWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 400px);
   grid-gap: 60px;
+  padding: 40px;
 `;
 
 const pageData = {

@@ -4,33 +4,42 @@ import styled from 'styled-components';
 import Img from 'gatsby-image';
 import PropTypes from 'prop-types';
 
-const ContextWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+const PageWrapper = styled.div`
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 40px;
 `;
 
+const Decor = styled.span`
+  font-size: 30px;
+  color: ${({theme}) => theme.colors.lemon};
+  margin: 10px;
+`;
+
 const Title = styled.h1`
-  grid-column: 1;
+  width: 50%;
+  text-align: center;
 `;
 
 const Paragraph = styled.p`
-  grid-column: 1;
+  width: 50%;
+  text-align: justify;
+  line-height: 1.8;
 `;
 
 const StyledImage = styled(Img)`
-  grid-column: 2;
-  /* width: 35%; */
-  /* height: 100vh; */
-  /* object-fit: cover; */
+  margin: 20px;
 `;
 
 const AboutPage = ({ data }) => (
-  <ContextWrapper>
+  <PageWrapper>
     <Title>{data.datoCmsAbout.title}</Title>
+    <Decor>. . .</Decor>
     <Paragraph>{data.datoCmsAbout.aboutContent}</Paragraph>
     <StyledImage fixed={data.datoCmsAbout.photo.fixed}/>
-  </ContextWrapper>
+  </PageWrapper>
 );
 
 AboutPage.propTypes = {

@@ -8,7 +8,7 @@ const PreviewWrapper = styled(Link)`
     display: block;
     position: relative;
     width: 100%;
-    height: 340px;
+    height: 240px;
     background-color: hsl(0, 0%, 95%);
     background-image: url(${({backgroud}) => backgroud});
     background-size: cover;
@@ -18,10 +18,10 @@ const PreviewInfoLabel = styled.div`
     position: absolute;
     left: 0;
     bottom: 35px;
-    width: 80%;
+    width: 70%;
     min-height: 40px;
-    background-color: black;
-    color: white;
+    background-color: ${({theme}) => theme.colors.lemon};
+    color: ${({theme}) => theme.colors.white};
     padding: 5px 15px;
 
     h2,

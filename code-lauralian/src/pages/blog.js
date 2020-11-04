@@ -16,7 +16,7 @@ const ArticesWrapper = styled.div`
 const pageData = {
   title: 'Artykuły',
   paragraph: 'Artykuły o frontendzie',
-}
+};
 
 const BlogPage = ({ data }) => {
   const { 

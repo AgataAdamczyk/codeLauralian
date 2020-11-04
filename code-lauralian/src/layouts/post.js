@@ -1,31 +1,62 @@
 import React from 'react';
 import Image from 'gatsby-image';
 import { graphql } from 'gatsby';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import PageInfo from 'components/PageInfo/PageInfo';
+import AuthorInfo from 'components/AuthorInfo/AuthorInfo';
+
+const PostContent = styled.div`
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 40px;
+`;
+
+const PostTitle = styled.h2`
+  width: 50%;
+  text-align: center;
+`;
+
+const PostParagraph = styled.p`
+  width: 50%;
+  line-height: 2.2;
+`;
+
+const PostImage = styled(Image)`
+  margin: 30px 0;
+  box-shadow: 9px 9px 20px -17px black;
+`;
 
 const PostLayout = ({ data }) => {
     return (
-        <div>
-            <h1>{data.datoCmsArticle.title}</h1>
-            <p>{data.datoCmsArticle.author}</p>
-            <Image fixed={data.datoCmsArticle.featuredImage.fixed} />
-            <div>
+        <>
+            <PageInfo
+              title={data.datoCmsArticle.title}
+              // paragraph={data.datoCmsArticle.data}
+            />
+            <PostContent>
                 {data.datoCmsArticle.articleContent.map(item => {
                     const itemKey = Object.keys(item)[1];
 
                     switch (itemKey) {
                         case 'paragraphContent': 
-                            return <p key={item.id}>{item[itemKey]}</p>;
-                        case 'headingContent': 
-                            return <h2 key={item.id}>{item[itemKey]}</h2>;
+                            return <PostParagraph key={item.id}>{item[itemKey]}</PostParagraph>;
+                        case 'heading': 
+                            return <PostTitle key={item.id}>{item[itemKey]}</PostTitle>;
                         case 'imageData': 
-                            return <Image key={item.id} fixed={item[itemKey].fixed} />;
+                            return <PostImage key={item.id} fixed={item[itemKey].fixed} />;
                         default:
                             return null;
                     }
                 })}
-            </div>
-        </div>
+            </PostContent>
+            <AuthorInfo 
+              author={data.datoCmsArticle.autor}
+              fixed={data.file.childImageSharp.fixed}
+            />
+        </>
     );
 };
 
@@ -45,7 +76,7 @@ query querySingleArticle($id: String!) {
     datoCmsArticle(id: {eq: $id}) {
       title
       featuredImage {
-        fixed(width: 500) {
+        fixed(width: 900) {
           ...GatsbyDatoCmsFixed_tracedSVG
         }
       }
@@ -55,17 +86,24 @@ query querySingleArticle($id: String!) {
           paragraphContent
           id
         }
-        ... on DatoCmsHeading {
-          headingContent
+        ... on DatoCmsHeadingContent {
+          heading
           id
         }
         ... on DatoCmsArticleImage {
           imageData {
-            fixed(width: 500) {
+            fixed(width: 800) {
                 ...GatsbyDatoCmsFixed_tracedSVG
             }
           }
           id
+        }
+      }
+    }
+    file(name: {eq: "me_img"}) {
+      childImageSharp {
+        fixed(height: 130, width: 130) {
+            ...GatsbyImageSharpFixed_noBase64
         }
       }
     }

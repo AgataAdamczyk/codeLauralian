@@ -2,35 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 import { Formik } from 'formik';
 import Button from 'components/Button/Button';
+import PageInfo from 'components/PageInfo/PageInfo';
 
-const PageWrapper = styled.div`
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px;
-`;
-
-const Title = styled.h1`
-  width: 50%;
-  text-align: center;
-`;
-
-const Paragraph = styled.p`
-  width: 50%;
-  text-align: center;
-  line-height: 1.8;
-`;
-
-const Decor = styled.span`
-  font-size: 30px;
-  color: ${({theme}) => theme.colors.lemon};
-  margin: 10px;
-`;
+const pageData = {
+  title: 'Kontakt',
+  paragraph: 'Jak mogę Ci pomóc ?',
+};
 
 const StyledInput = styled.input`
   display: block;
   border: 2px solid black;
+  border-radius: 5px;
   background: none;
   font-size: 20px;
   height: ${({as}) => as ? '200px' : 'auto'};
@@ -45,11 +27,16 @@ const StyledLabel = styled.label`
   font-weight: bold;
 `;
 
+const StyledForm = styled.form`
+  padding: 0 750px;
+  /* display: flex;
+  flex-direction: column;
+  align-items: flex-start; */
+`;
+
 const ContactPage = () => (
-  <PageWrapper>
-    <Title>Kontakt</Title>
-    <Decor>. . .</Decor>
-    <Paragraph>Jak mogę Ci pomóc ?</Paragraph>
+  <>
+    <PageInfo title={pageData.title} paragraph={pageData.paragraph} />
     <Formik
        initialValues={{ name: '', email: '', message: '' }}
       //  validate={values => {
@@ -79,7 +66,7 @@ const ContactPage = () => (
          handleSubmit,
          isSubmitting,
        }) => (
-        <form onSubmit={handleSubmit}>
+        <StyledForm onSubmit={handleSubmit}>
           <StyledLabel htmlFor="name">Imię</StyledLabel>
           <StyledInput
             id="name" 
@@ -109,10 +96,10 @@ const ContactPage = () => (
             value={values.email} 
           />
           <Button type="submit " disabled={isSubmitting}>Wyślij</Button>
-         </form>
+         </StyledForm>
        )}
      </Formik>
-  </PageWrapper>
+  </>
 );
 
 export default ContactPage;

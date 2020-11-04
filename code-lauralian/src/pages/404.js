@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql, Link } from 'gatsby';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 const PageWrapper = styled(Link)`
   padding: 100px;
@@ -28,21 +28,21 @@ const Info404 = styled.h2`
 const NotFoundPage = ({ data }) => (
   <>
     <PageWrapper to='/'>
-      <Logo404 fixed={data.file.childImageSharp.fixed}/>
+      <Logo404 fixed={data.file.childImageSharp.fixed} />
       <Info404>Niestety, nie ma takiej strony...</Info404>
     </PageWrapper>
   </>
 );
 
-NotFoundPage.propTypes = {
-  data: PropTypes.shape({
-    file: {
-      childImageSharp: {
-        fixed: PropTypes.string.isRequired,
-      }
-    }
-  }).isRequired,
-};
+// NotFoundPage.propTypes = {
+//   data: PropTypes.shape({
+//     file: {
+//       childImageSharp: {
+//         fixed: PropTypes.string.isRequired,
+//       }
+//     }
+//   }).isRequired,
+// };
 
 export const query = graphql`
   {

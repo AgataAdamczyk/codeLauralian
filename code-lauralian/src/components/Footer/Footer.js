@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Media from 'components/Media/Media';
 
 const FooterContent = styled.div`
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     width: 100vw;
@@ -11,6 +11,7 @@ const FooterContent = styled.div`
     flex-direction: column;
     justify-self: flex-end;
     background-color: ${({theme}) => theme.colors.lemon};
+    margin-top: 40px;
 `;
 
 const Copyright = styled.p`

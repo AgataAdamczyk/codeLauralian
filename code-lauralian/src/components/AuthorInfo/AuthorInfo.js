@@ -1,7 +1,7 @@
 import React from 'react';
-// import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import Image from 'gatsby-image';
+import PropTypes from 'prop-types';
 
 const InfoWrapper = styled.div`
   width: 100vw;
@@ -22,10 +22,9 @@ const AuthorImg = styled(Image)`
 `;
 
 const Author = styled.h4`
+    font-weight: ${({theme}) => theme.font.bold};
     grid-column: 2/-1; 
     margin-bottom: 10px;  
-    /* width: 50%; */
-    /* text-align: center; */
 `;
 
 const Description = styled.p`
@@ -43,5 +42,10 @@ const AuthorInfo = ({ fixed, author }) => (
         </Author>
     </InfoWrapper>
 );
+
+AuthorInfo.propTypes = {
+    fixed: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+};
 
 export default AuthorInfo;

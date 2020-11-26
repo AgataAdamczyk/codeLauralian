@@ -15,7 +15,6 @@ module.exports = {
         components: path.join(__dirname, 'src/components'),
         pages: path.join(__dirname, 'src/pages'),
         layouts: path.join(__dirname, 'src/layouts'),
-        templates: path.join(__dirname, 'src/templates'),
         utils: path.join(__dirname, 'src/utils'),
         src: path.join(__dirname, 'src'),
       }
@@ -45,12 +44,13 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-layout`,
     {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      resolve: `gatsby-plugin-google-fonts-v2`,
       options: {
         fonts: [
           {
             family: `Montserrat`,
-            variants: [`500`, `600`, `700`],
+            // variable: true,
+            weights: [`400`, `500`, `600`, `700`, `900`],
             subsets: [`latin-ext`],
           },
         ],

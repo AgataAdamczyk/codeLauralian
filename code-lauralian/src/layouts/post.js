@@ -1,10 +1,10 @@
 import React from 'react';
-import Image from 'gatsby-image';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import Image from 'gatsby-image';
 import PageInfo from 'components/PageInfo/PageInfo';
 import AuthorInfo from 'components/AuthorInfo/AuthorInfo';
+import PropTypes from 'prop-types';
 
 const PostContent = styled.div`
   width: 100vw;
@@ -33,11 +33,11 @@ const PostLayout = ({ data }) => {
     return (
         <>
             <PageInfo
-              title={data.datoCmsArticle.title}
+              title={data.datoCmsBlog.title}
               // paragraph={data.datoCmsArticle.data}
             />
             <PostContent>
-                {data.datoCmsArticle.articleContent.map(item => {
+                {data.datoCmsBlog.blogContent.map(item => {
                     const itemKey = Object.keys(item)[1];
 
                     switch (itemKey) {
@@ -53,7 +53,7 @@ const PostLayout = ({ data }) => {
                 })}
             </PostContent>
             <AuthorInfo 
-              author={data.datoCmsArticle.autor}
+              author={data.datoCmsBlog.autor}
               fixed={data.file.childImageSharp.fixed}
             />
         </>
@@ -62,9 +62,16 @@ const PostLayout = ({ data }) => {
 
 PostLayout.propTypes = {
   data: PropTypes.shape({
-    datoCmsArticle: {
+    datoCmsBlog: {
       title: PropTypes.string.isRequired,
       featuredImage: {
+        fixed: PropTypes.string.isRequired,
+      },
+      blogContent: PropTypes.string.isRequired, 
+      autor: PropTypes.string.isRequired,
+    },
+    file: {
+      childImageSharp: {
         fixed: PropTypes.string.isRequired,
       }
     }
@@ -72,42 +79,42 @@ PostLayout.propTypes = {
 };
 
 export const query = graphql`
-query querySingleArticle($id: String!) {
-    datoCmsArticle(id: {eq: $id}) {
-      title
-      featuredImage {
-        fixed(width: 900) {
-          ...GatsbyDatoCmsFixed_tracedSVG
-        }
-      }
-      autor
-      articleContent {
-        ... on DatoCmsParagraph {
-          paragraphContent
-          id
-        }
-        ... on DatoCmsHeadingContent {
-          heading
-          id
-        }
-        ... on DatoCmsArticleImage {
-          imageData {
-            fixed(width: 800) {
-                ...GatsbyDatoCmsFixed_tracedSVG
-            }
-          }
-          id
-        }
+query querySingleBlog($id: String!) {
+  datoCmsBlog(id: {eq: $id}) {
+    title
+    featuredImage {
+      fixed(width: 900) {
+        ...GatsbyDatoCmsFixed_tracedSVG
       }
     }
-    file(name: {eq: "me_img"}) {
-      childImageSharp {
-        fixed(height: 130, width: 130) {
-            ...GatsbyImageSharpFixed_noBase64
+    blogContent {
+      ... on DatoCmsParagraph {
+        paragraphContent
+        id
+      }
+      ... on DatoCmsHeadingContent {
+        heading
+        id
+      }
+      ... on DatoCmsArticleImage {
+        imageData {
+          fixed(width: 800) {
+            ...GatsbyDatoCmsFixed_tracedSVG
+          }
         }
+        id
+      }
+    }
+    autor
+  }
+  file(name: {eq: "hero"}) {
+    childImageSharp {
+      fixed(height: 130, width: 130) {
+          ...GatsbyImageSharpFixed_noBase64
       }
     }
   }
+}
 `;
 
 export default PostLayout;

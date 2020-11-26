@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
 import { graphql } from 'gatsby';
+import styled from 'styled-components';
 import Image from 'gatsby-image';
 import PageInfo from 'components/PageInfo/PageInfo';
 import PropTypes from 'prop-types';

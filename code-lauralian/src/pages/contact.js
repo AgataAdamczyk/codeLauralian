@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Formik } from 'formik';
+import styled from 'styled-components';
 import Button from 'components/Button/Button';
 import PageInfo from 'components/PageInfo/PageInfo';
 
@@ -11,7 +11,7 @@ const pageData = {
 
 const StyledInput = styled.input`
   display: block;
-  border: 2px solid black;
+  border: 1.7px solid black;
   border-radius: 5px;
   background: none;
   font-size: 20px;
@@ -21,17 +21,22 @@ const StyledInput = styled.input`
 `;
 
 const StyledLabel = styled.label`
+  font-weight: ${({theme}) => theme.font.bold};
   margin: 30px 0 10px;
   display: block;
   font-size: 14px;
-  font-weight: bold;
 `;
 
 const StyledForm = styled.form`
-  padding: 0 750px;
-  /* display: flex;
+  width: 40vw;
+  padding: 0 40px; 
+  margin: auto;
+  display: flex;
   flex-direction: column;
-  align-items: flex-start; */
+`;
+
+const SubmitBtn = styled(Button)`
+  width: 95px;
 `;
 
 const ContactPage = () => (
@@ -95,7 +100,7 @@ const ContactPage = () => (
             onBlur={handleBlur}
             value={values.email} 
           />
-          <Button type="submit " disabled={isSubmitting}>Wyślij</Button>
+          <SubmitBtn type="submit" disabled={isSubmitting}>Wyślij</SubmitBtn>
          </StyledForm>
        )}
      </Formik>

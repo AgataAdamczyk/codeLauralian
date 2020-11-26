@@ -11,6 +11,7 @@ const PageWrapper = styled.div`
 `;
 
 const Title = styled.h1`
+  font-weight: ${({theme}) => theme.font.bold};
   width: 50%;
   text-align: center;
 `;

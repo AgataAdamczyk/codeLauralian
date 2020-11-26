@@ -1,48 +1,48 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import slugify from 'slugify';
 import styled from 'styled-components';
 import PageInfo from 'components/PageInfo/PageInfo';
-import ArticlePreview from 'components/ArticlePreview/ArticlePreview';
-import slugify from 'slugify';
+import BlogPreview from 'components/BlogPreview/BlogPreview';
 import PropTypes from 'prop-types';
 
-const ArticesWrapper = styled.div`
+const BlogWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 400px);
+  grid-template-columns: repeat(3, 370px);
   grid-gap: 60px;
   padding: 40px;
 `;
 
 const pageData = {
-  title: 'Artykuły',
-  paragraph: 'Artykuły o frontendzie',
+  title: 'Blog',
+  paragraph: 'Porcja wiedzy i przemyśleń frontendowych 😉',
 };
 
 const BlogPage = ({ data }) => {
   const { 
-    allDatoCmsArticle: { nodes },
+    allDatoCmsBlog: { nodes },
   } = data;
 
   return (
     <>
       <PageInfo title={pageData.title} paragraph={pageData.paragraph} />
-      <ArticesWrapper>
+      <BlogWrapper>
         {nodes.map(({title, featuredImage }) => (
-          <ArticlePreview 
+          <BlogPreview 
             key={title} 
             title={title} 
             image={featuredImage.fluid} 
             slug={slugify(title, { lower: true })}
           />
         ))}
-      </ArticesWrapper>
+      </BlogWrapper>
     </>
   )
 };
 
 BlogPage.propTypes = {
   data: PropTypes.shape({
-    allDatoCmsArticle: {
+    allDatoCmsBlog: {
       nodes: {
         title: PropTypes.string.isRequired,
         featuredImage: {
@@ -53,10 +53,9 @@ BlogPage.propTypes = {
   }).isRequired,
 };
 
-
 export const query = graphql`
   {
-    allDatoCmsArticle {
+    allDatoCmsBlog {
       nodes {
         title
         featuredImage {

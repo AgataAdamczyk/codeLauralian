@@ -1,8 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
 import { graphql, Link } from 'gatsby';
-import PageInfo from 'components/PageInfo/PageInfo';
+import styled from 'styled-components';
 import Image from 'gatsby-image';
+import PageInfo from 'components/PageInfo/PageInfo';
 import PropTypes from 'prop-types';
 
 const PortfolioLink = styled(Link)`
@@ -45,7 +45,7 @@ export const query = graphql`
   {
     file(name: {eq: "github_link"}) {
       childImageSharp {
-        fixed(height: 120) {
+        fixed(height: 100) {
           ...GatsbyImageSharpFixed_noBase64
         }
       }

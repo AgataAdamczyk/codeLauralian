@@ -1,7 +1,7 @@
 import React from 'react';
+import { Link } from 'gatsby';
 import styled from 'styled-components';
 import Image from 'gatsby-image';
-import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 
 const PreviewWrapper = styled(Link)`
@@ -9,7 +9,7 @@ const PreviewWrapper = styled(Link)`
     position: relative;
     margin-left: 40px;
     width: 100%;
-    height: 240px;
+    height: 250px;
     background-color: hsl(0, 0%, 95%);
     background-image: url(${({backgroud}) => backgroud});
     box-shadow: 9px 9px 20px -17px black;
@@ -39,8 +39,8 @@ const StyledImage = styled(Image)`
     object-fit: cover;
 `;
 
-const Preview = ({ title, image, slug }) => (
-    <PreviewWrapper to={`/articles/${slug}`}>
+const BlogPreview = ({ title, image, slug }) => (
+    <PreviewWrapper to={`/blog/${slug}`}>
         <StyledImage fluid={image} />
         <PreviewInfoLabel>
             <h3>{title}</h3>
@@ -48,10 +48,10 @@ const Preview = ({ title, image, slug }) => (
     </PreviewWrapper>
 );
 
-Preview.propTypes = {
+BlogPreview.propTypes = {
     title: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     slug: PropTypes.string.isRequired,
 };
 
-export default Preview;
+export default BlogPreview;

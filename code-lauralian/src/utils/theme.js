@@ -3,9 +3,9 @@ import { colors }  from 'utils/colors';
 export const theme = {
     colors,
     font: {
-        thin: '500',
-        regular: '600',
-        bold: '700',
+        regular: '400',
+        medium: '500',
+        bold: '600',
     },
     media: {
         phone: '@media (min-width: 1024px)',

@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
 import { graphql, Link, useStaticQuery } from 'gatsby';
+import styled from 'styled-components';
 import Image from 'gatsby-image';
 import Media from 'components/Media/Media';
 
@@ -77,9 +77,6 @@ const Navigation = () => {
                 <NavigationListItem>
                     <Link to="/about">o mnie</Link>
                 </NavigationListItem>
-                {/* <NavigationListItem>
-                    <Link to="/gallery">galeria</Link>
-                </NavigationListItem> */}
                 <NavigationListItem>
                     <Link to="/contact">kontakt</Link>
                 </NavigationListItem>

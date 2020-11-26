@@ -1,8 +1,8 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
 import styled from 'styled-components';
-import Img from 'gatsby-image';
-// import PropTypes from 'prop-types';
+import Image from 'gatsby-image';
+import PropTypes from 'prop-types';
 
 const PageWrapper = styled(Link)`
   padding: 100px;
@@ -13,7 +13,7 @@ const PageWrapper = styled(Link)`
   cursor: pointer;
 `;
 
-const Logo404 = styled(Img)`
+const Logo404 = styled(Image)`
   background-color: white;
 `;
 
@@ -34,21 +34,21 @@ const NotFoundPage = ({ data }) => (
   </>
 );
 
-// NotFoundPage.propTypes = {
-//   data: PropTypes.shape({
-//     file: {
-//       childImageSharp: {
-//         fixed: PropTypes.string.isRequired,
-//       }
-//     }
-//   }).isRequired,
-// };
+NotFoundPage.propTypes = {
+  data: PropTypes.shape({
+    file: {
+      childImageSharp: {
+        fixed: PropTypes.string.isRequired,
+      }
+    }
+  }).isRequired,
+};
 
 export const query = graphql`
   {
-    file(name: {eq: "logo_404_3"}) {
+    file(name: {eq: "logo_404"}) {
       childImageSharp {
-        fixed(height: 300) {
+        fixed(height: 250) {
           ...GatsbyImageSharpFixed_noBase64
         }
       }

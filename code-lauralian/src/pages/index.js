@@ -6,6 +6,7 @@ import Button from 'components/Button/Button';
 import PropTypes from 'prop-types';
 
 const ContentWrapper = styled.div`
+  position: relative;
   width: 100vw;
   display: grid;
   grid-template-columns: repeat(2, 600px);
@@ -29,7 +30,6 @@ const Paragraph = styled.p`
 `;
 
 const HeroImage = styled(Image)`
-  position: relative;
   grid-column: 2/-1;
   grid-row: 1/-1;
   border-radius: 50%;
@@ -44,7 +44,7 @@ const Attention = styled.div`
   border-radius: 5px;
   transform: rotate(-6deg);
   left: 780px;
-  top: 410px;
+  top: 290px;
   z-index: -1;
 `;
 

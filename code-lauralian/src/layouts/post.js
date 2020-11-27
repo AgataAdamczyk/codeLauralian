@@ -1,5 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
+import { MDXProvider } from "@mdx-js/react"
 import styled from 'styled-components';
 import Image from 'gatsby-image';
 import PageInfo from 'components/PageInfo/PageInfo';
@@ -22,6 +24,30 @@ const PostTitle = styled.h2`
 const PostParagraph = styled.p`
   width: 50%;
   line-height: 2.2;
+
+  a {
+    color: ${({theme}) => theme.colors.lemon};
+    text-decoration: none;
+
+    :hover {
+      text-decoration: underline;
+    }
+  }
+
+  ul {
+    list-style: none;
+    margin-left: 20px;
+
+    li::before {
+      content: " ";
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      margin-right: 15px;
+      background-color: ${({theme}) => theme.colors.lemon};
+    }
+  }
 `;
 
 const PostImage = styled(Image)`
@@ -36,13 +62,17 @@ const PostLayout = ({ data }) => {
               title={data.datoCmsBlog.title}
               // paragraph={data.datoCmsArticle.data}
             />
-            <PostContent>
+           
+            <PostContent> 
+              <MDXProvider>
                 {data.datoCmsBlog.blogContent.map(item => {
                     const itemKey = Object.keys(item)[1];
 
                     switch (itemKey) {
-                        case 'paragraphContent': 
-                            return <PostParagraph key={item.id}>{item[itemKey]}</PostParagraph>;
+                        case 'paragraphContentNode': 
+                            return <PostParagraph>
+                                    <MDXRenderer key={item.id}>{item[itemKey].childMdx.body}</MDXRenderer>
+                                  </PostParagraph>;
                         case 'heading': 
                             return <PostTitle key={item.id}>{item[itemKey]}</PostTitle>;
                         case 'imageData': 
@@ -51,6 +81,7 @@ const PostLayout = ({ data }) => {
                             return null;
                     }
                 })}
+              </MDXProvider>
             </PostContent>
             <AuthorInfo 
               author={data.datoCmsBlog.autor}
@@ -89,7 +120,11 @@ query querySingleBlog($id: String!) {
     }
     blogContent {
       ... on DatoCmsParagraph {
-        paragraphContent
+        paragraphContentNode {
+          childMdx {
+            body
+          }
+        }
         id
       }
       ... on DatoCmsHeadingContent {
@@ -98,7 +133,7 @@ query querySingleBlog($id: String!) {
       }
       ... on DatoCmsArticleImage {
         imageData {
-          fixed(width: 800) {
+          fixed(width: 700) {
             ...GatsbyDatoCmsFixed_tracedSVG
           }
         }

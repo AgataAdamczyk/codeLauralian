@@ -1,56 +1,76 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
 import styled from 'styled-components';
+import media from 'utils/media';
 import Image from 'gatsby-image';
 import Button from 'components/Button/Button';
 import PropTypes from 'prop-types';
 
 const ContentWrapper = styled.div`
-  position: relative;
-  width: 100vw;
-  display: grid;
-  grid-template-columns: repeat(2, 600px);
-  grid-template-rows: 1fr 60px 60px 40px 1fr;
-  grid-gap: 30px 70px;
-  padding: 100px 0;
+  display: flex;
+  padding: 80px 20px; 
   align-items: center;
   justify-content: center;
-  justify-items: right;
+  flex-direction: column;
+  text-align: center;
+
+  ${media.desktop`
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr 60px 60px 40px 1fr;
+    grid-gap: 25px 60px;
+    padding: 150px 25px;
+    justify-items: right;
+  `}
 `;
 
 const Title = styled.h1`
   font-weight: ${({theme}) => theme.font.bold};
-  grid-column: 1/2;
-  grid-row: 2/3;
+  font-size: 1.5em;
+
+  ${media.desktop`
+    grid-column: 1/2;
+    grid-row: 2/3;
+    font-size: 2em;
+    justify-self: right;
+  `}
 `;
 
 const Paragraph = styled.p`
-  grid-column: 1/2;
-  grid-row: 3/4;
+  font-size: .8em;
+
+  ${media.desktop`
+    grid-column: 1/2;
+    grid-row: 3/4;
+    font-size: 1.2em;
+    justify-self: right;
+  `}
 `;
 
 const HeroImage = styled(Image)`
-  grid-column: 2/-1;
-  grid-row: 1/-1;
+  min-width: 200px;
   border-radius: 50%;
-  box-shadow: 9px 9px 20px -17px black;
-`;
+  box-shadow: 9px 9px 20px -17px ${({theme}) => theme.colors.black};
 
-const Attention = styled.div`
-  position: absolute;
-  width: 170px;
-  height: 60px;
-  background-color: ${({theme}) => theme.colors.lemon};
-  border-radius: 5px;
-  transform: rotate(-6deg);
-  left: 780px;
-  top: 290px;
-  z-index: -1;
+  ${media.tablet`
+    min-width: 400px;
+  `}
+  
+  ${media.desktop`
+    min-width: 570px;
+    grid-column: 2/-1;
+    grid-row: 1/-1;
+    justify-self: left;
+  `}
 `;
 
 const HeroButton = styled(Button)`
-  grid-column: 1/2;
-  grid-row: 4/5;
+
+
+  ${media.desktop`
+    grid-column: 1/2;
+    grid-row: 4/5;
+  `}
 `;
 
 const IndexPage = ({ data }) => (
@@ -59,8 +79,7 @@ const IndexPage = ({ data }) => (
       <Title>Cześć, mam na imię Agata!</Title>
       <Paragraph>Jestem Junior Front-end Developerem</Paragraph>
       <HeroButton as={Link} to='/portfolio'>Moje portfolio</HeroButton>
-      <HeroImage fixed={data.file.childImageSharp.fixed} />
-      <Attention />
+      <HeroImage fluid={data.file.childImageSharp.fluid} />
     </ContentWrapper>
   </>
 );
@@ -69,7 +88,7 @@ IndexPage.propTypes = {
   data: PropTypes.shape({
     file: {
       childImageSharp: {
-        fixed: PropTypes.string.isRequired,
+        fluid: PropTypes.object.isRequired,
       }
     }
   }).isRequired,
@@ -79,8 +98,8 @@ export const query = graphql`
   {
     file(name: {eq: "hero"}) {
       childImageSharp {
-        fixed(height: 600) {
-          ...GatsbyImageSharpFixed_noBase64
+        fluid(maxWidth: 570, quality: 90) {
+          ...GatsbyImageSharpFluid_noBase64
         }
       }
     }

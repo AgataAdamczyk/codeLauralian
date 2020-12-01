@@ -9,20 +9,19 @@ import instagram from 'assets/images/instagram.svg';
 const MediaWrapper = styled.nav`
     padding: 15px;
     position: absolute;
-    top: 0px;
+    top: 0;
     right: 30px;
     display: flex;
     flex-direction: row;
 `;
 
-const MenuItem = styled(Link)`
-    cursor: pointer;
-`;
+const MenuItem = styled(Link)``;
 
 const MediaIcon = styled.img`
     width: 15px;
     height: 15px;
     margin-right: 15px;
+    cursor: pointer;
 `;
 
 const Media = () => (

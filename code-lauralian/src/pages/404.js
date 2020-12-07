@@ -38,7 +38,7 @@ NotFoundPage.propTypes = {
   data: PropTypes.shape({
     file: {
       childImageSharp: {
-        fixed: PropTypes.string.isRequired,
+        fixed: PropTypes.object.isRequired,
       }
     }
   }).isRequired,

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik } from 'formik';
 import styled from 'styled-components';
+import media from 'utils/media';
 import Button from 'components/Button/Button';
 import PageInfo from 'components/PageInfo/PageInfo';
 
@@ -14,29 +15,40 @@ const StyledInput = styled.input`
   border: 1.7px solid black;
   border-radius: 5px;
   background: none;
-  font-size: 20px;
-  height: ${({as}) => as ? '200px' : 'auto'};
-  width: ${({as}) => as ? '500px' : '300px'};
-  margin-bottom: ${({as}) => as && '40px'};
+  font-size: .8em;
+  padding: .45em;
+  height: ${({as}) => as ? '10vh' : 'auto'};
+  width: ${({as}) => as ? '80vw' : '60vw'};
+
+  ${media.desktop`
+    font-size: 1em;
+    height: ${({as}) => as ? '200px' : 'auto'};
+    width: ${({as}) => as ? '500px' : '300px'};
+    margin-bottom: ${({as}) => as && '40px'};
+  `}
 `;
 
 const StyledLabel = styled.label`
   font-weight: ${({theme}) => theme.font.bold};
   margin: 30px 0 10px;
   display: block;
-  font-size: 14px;
+  font-size: .9em;
 `;
 
 const StyledForm = styled.form`
-  width: 40vw;
-  padding: 0 40px; 
   margin: auto;
   display: flex;
   flex-direction: column;
+  padding: 0 5vw;
+
+  ${media.desktop`
+    width: 40vw;
+    padding: 0 40px; 
+  `}
 `;
 
 const SubmitBtn = styled(Button)`
-  width: 95px;
+  width: 9em;
 `;
 
 const ContactPage = () => (

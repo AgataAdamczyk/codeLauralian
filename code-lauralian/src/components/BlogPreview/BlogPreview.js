@@ -50,8 +50,8 @@ const BlogPreview = ({ title, image, slug }) => (
 
 BlogPreview.propTypes = {
     title: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    slug: PropTypes.string.isRequired,
+    image: PropTypes.objectOf.isRequired,
+    slug: PropTypes.string.isRequired
 };
 
 export default BlogPreview;

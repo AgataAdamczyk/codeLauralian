@@ -46,7 +46,7 @@ BlogPage.propTypes = {
       nodes: {
         title: PropTypes.string.isRequired,
         featuredImage: {
-          fluid: PropTypes.string.isRequired
+          fluid: PropTypes.object.isRequired,
         }
       }
     }

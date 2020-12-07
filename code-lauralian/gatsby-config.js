@@ -49,7 +49,6 @@ module.exports = {
         fonts: [
           {
             family: `Montserrat`,
-            // variable: true,
             weights: [`400`, `500`, `600`, `700`, `900`],
             subsets: [`latin-ext`],
           },
@@ -63,13 +62,13 @@ module.exports = {
         path: `${__dirname}/src/assets/images`,
       },
     },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `articles`,
-        path: `${__dirname}/src/data/articles`,
-      },
-    },
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     name: `articles`,
+    //     path: `${__dirname}/src/data/articles`,
+    //   },
+    // },
     {
       resolve: `gatsby-source-datocms`,
       options: {

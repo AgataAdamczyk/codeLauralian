@@ -24,7 +24,7 @@ const Copyright = styled.p`
 const Footer = () => (
     <FooterContent>
         <Copyright>Created in GatsbyJS &copy; 2020 CodeLauralian</Copyright>
-        <Media/>
+        <Media />
     </FooterContent>
 );
   

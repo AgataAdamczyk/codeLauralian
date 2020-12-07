@@ -3,26 +3,30 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const HamburgerWrapper = styled.button`
-  padding: 10px;
   display: inline-block;
   cursor: pointer;
-  background-color: transparent;
-  border: 0;
-  margin: 0;
-  transition: transform .3s ease-in-out;
-  transform: ${props => props.open ? "translate(250px)" : "translate(50px)"};
+  background-color: ${({theme}) => theme.colors.lemon};
+  border: 1px solid ${({theme}) => theme.colors.lemon};
+  border-radius: 6px;
+  padding: 8px 6px;
+  transition: transform .4s ease-in-out;
+  transform: ${props => props.open ? "translate(45px)" : "translate(40px)"};
+  z-index: 999;
+  position: absolute;
+  top: -30px;
+  left: 0;
 `;
 
 const HamburgerBox = styled.span`
-  width: 35px;
-  height: 24px;
+  width: 30px;
+  height: 20px;
   display: inline-block;
   position: relative;
 `;
 
 const HamburgerInner = styled.span`
   width: 100%;
-  height: 3px;
+  height: 2px;
   background-color: ${props => props.open ? "transparent" : "black"};
   position: absolute;
   left: 0;
@@ -33,8 +37,8 @@ const HamburgerInner = styled.span`
   ::before,
   ::after {
     width: 100%;
-    height: 3px;
-    background-color: black;
+    height: 2px;
+    background-color: ${({theme}) => theme.colors.black};
     content: '';
     left: 0;
     position: absolute;
@@ -54,9 +58,9 @@ const HamburgerInner = styled.span`
 
 const Hamburger = ({ open }) => {
   return(
-    <HamburgerWrapper open={open}>
+    <HamburgerWrapper open={open} >
       <HamburgerBox>
-        <HamburgerInner open={open}/>
+        <HamburgerInner open={open} />
       </HamburgerBox>
     </HamburgerWrapper>
   )

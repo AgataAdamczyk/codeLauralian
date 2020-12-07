@@ -44,7 +44,7 @@ const AuthorInfo = ({ fixed, author }) => (
 );
 
 AuthorInfo.propTypes = {
-    fixed: PropTypes.string.isRequired,
+    fixed: PropTypes.objectOf.isRequired,
     author: PropTypes.string.isRequired,
 };
 

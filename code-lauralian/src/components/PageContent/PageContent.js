@@ -40,7 +40,7 @@ const PageContent = ({ header, paragraph, fixed }) => (
 PageContent.propTypes = {
     header: PropTypes.string.isRequired,
     paragraph: PropTypes.string.isRequired,
-    fixed: PropTypes.string.isRequired,
+    fixed: PropTypes.objectOf.isRequired
 };
 
 export default PageContent;

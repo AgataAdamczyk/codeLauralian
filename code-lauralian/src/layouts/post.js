@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { MDXProvider } from "@mdx-js/react"
 import styled from 'styled-components';
+import media from 'utils/media';
 import Image from 'gatsby-image';
 import PageInfo from 'components/PageInfo/PageInfo';
 import AuthorInfo from 'components/AuthorInfo/AuthorInfo';
@@ -13,17 +14,29 @@ const PostContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 40px;
+  padding: 10px;
+
+  ${media.desktop`
+    padding: 0 40px;
+  `}
 `;
 
 const PostTitle = styled.h2`
-  width: 50%;
+  width: 90%;
   text-align: center;
+
+  ${media.desktop`
+    width: 50%;
+  `}
 `;
 
 const PostParagraph = styled.p`
-  width: 50%;
+  width: 90%;
   line-height: 2.2;
+
+  ${media.desktop`
+    width: 50%;
+  `}
 
   a {
     color: ${({theme}) => theme.colors.lemon};

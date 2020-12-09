@@ -2,15 +2,23 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import slugify from 'slugify';
 import styled from 'styled-components';
+import media from 'utils/media';
 import PageInfo from 'components/PageInfo/PageInfo';
 import BlogPreview from 'components/BlogPreview/BlogPreview';
 import PropTypes from 'prop-types';
 
 const BlogWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 370px);
-  grid-gap: 60px;
-  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  padding: 10%;
+  align-items: center;
+
+  ${media.desktop`
+    display: grid;
+    grid-template-columns: repeat(3, 370px);
+    grid-gap: 60px;
+    padding: 40px;
+  `}
 `;
 
 const pageData = {

@@ -1,19 +1,29 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
+import media from 'utils/media';
 import Image from 'gatsby-image';
 import PropTypes from 'prop-types';
 
 const PreviewWrapper = styled(Link)`
     display: block;
     position: relative;
-    margin-left: 40px;
-    width: 100%;
-    height: 250px;
+    margin-left: 0;
+    margin-bottom: 30px;
+    width: 80%;
+    height: 30%;
     background-color: hsl(0, 0%, 95%);
     background-image: url(${({backgroud}) => backgroud});
     box-shadow: 9px 9px 20px -17px black;
     background-size: cover;
+
+    ${media.desktop`
+        width: 100%;
+        height: 250px;
+        margin-left: 40px;
+
+    
+    `}
 `;
 
 const PreviewInfoLabel = styled.div`

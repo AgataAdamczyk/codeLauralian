@@ -37,7 +37,7 @@ const NavigationLinks = ({ setNavbarOpen }) => {
         <>
             <NavigationLink onClick={() => setNavbarOpen()} to="/portfolio">portfolio</NavigationLink>
             <NavigationLink onClick={() => setNavbarOpen()} to="/blog">blog</NavigationLink>
-            <NavigationLink onClick={() => setNavbarOpen()} to="/about">about</NavigationLink>
+            <NavigationLink onClick={() => setNavbarOpen()} to="/about">o mnie</NavigationLink>
             <NavigationLink onClick={() => setNavbarOpen()} to="/contact">kontakt</NavigationLink>
         </> 
     )
